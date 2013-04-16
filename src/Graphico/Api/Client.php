@@ -45,12 +45,33 @@ class Graphico_Api_Client
             break;
         case 'PUT':
         case 'DELETE':
-            $method = 'POST';
             $params = array_merge($params, array('_method' => $method));
+            $method = 'POST';
+            break;
         default:
             throw new InvalidArgumentException(sprintf('Invalid request method "%s" is specified', $method));
         }
 
         return $this->httpClient->request($method, $this->baseUrl . $uri, $params);
+    }
+
+    public function get($uri, $params = array())
+    {
+        return $this->call('GET', $uri, $params);
+    }
+
+    public function post($uri, $params = array())
+    {
+        return $this->call('POST', $uri, $params);
+    }
+
+    public function put($uri, $params = array())
+    {
+        return $this->call('PUT', $uri, $params);
+    }
+
+    public function delete($uri, $params = array())
+    {
+        return $this->call('DELETE', $uri, $params);
     }
 }

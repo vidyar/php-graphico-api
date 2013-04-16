@@ -18,7 +18,7 @@ class Graphico_Tests_Api_ClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function call_should_call_HttpClient_correctly()
+    public function get_should_call_HttpClient_correctly()
     {
         $httpClient = $this->getMock('Graphico_Api_HttpClientInterface');
         $httpClient->expects($this->once())
@@ -28,7 +28,55 @@ class Graphico_Tests_Api_ClientTest extends PHPUnit_Framework_TestCase
 
         $client = new Graphico_Api_Client($httpClient, 'http://graphico.example.com/api/v0');
 
-        $res = $client->call('GET', '/foo', array('bar' => 'baz'));
+        $res = $client->get('/foo', array('bar' => 'baz'));
+    }
+
+    /**
+     * @test
+     */
+    public function post_should_call_HttpClient_correctly()
+    {
+        $httpClient = $this->getMock('Graphico_Api_HttpClientInterface');
+        $httpClient->expects($this->once())
+            ->method('request')
+            ->with('POST', 'http://graphico.example.com/api/v0/foo', array('bar' => 'baz'))
+            ->will($this->returnValue($this->getMock('Graphico_Api_ResponseInterface')));
+
+        $client = new Graphico_Api_Client($httpClient, 'http://graphico.example.com/api/v0');
+
+        $res = $client->post('/foo', array('bar' => 'baz'));
+    }
+
+    /**
+     * @test
+     */
+    public function put_should_call_HttpClient_correctly()
+    {
+        $httpClient = $this->getMock('Graphico_Api_HttpClientInterface');
+        $httpClient->expects($this->once())
+            ->method('request')
+            ->with('POST', 'http://graphico.example.com/api/v0/foo', array('bar' => 'baz', '_method' => 'PUT'))
+            ->will($this->returnValue($this->getMock('Graphico_Api_ResponseInterface')));
+
+        $client = new Graphico_Api_Client($httpClient, 'http://graphico.example.com/api/v0');
+
+        $res = $client->put('/foo', array('bar' => 'baz'));
+    }
+
+    /**
+     * @test
+     */
+    public function delete_should_call_HttpClient_correctly()
+    {
+        $httpClient = $this->getMock('Graphico_Api_HttpClientInterface');
+        $httpClient->expects($this->once())
+            ->method('request')
+            ->with('POST', 'http://graphico.example.com/api/v0/foo', array('bar' => 'baz', '_method' => 'DELETE'))
+            ->will($this->returnValue($this->getMock('Graphico_Api_ResponseInterface')));
+
+        $client = new Graphico_Api_Client($httpClient, 'http://graphico.example.com/api/v0');
+
+        $res = $client->delete('/foo', array('bar' => 'baz'));
     }
 
     /**
