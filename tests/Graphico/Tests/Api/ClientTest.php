@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of phpgraphico-api.
+ * This file is part of php-graphico-api.
  *
  * (c) Yuya Takeyama
  *
@@ -29,8 +29,6 @@ class Graphico_Tests_Api_ClientTest extends PHPUnit_Framework_TestCase
         $client = new Graphico_Api_Client($httpClient, 'http://graphico.example.com/api/v0');
 
         $res = $client->call('GET', '/foo', array('bar' => 'baz'));
-
-        return new Graphico_Api_Response($res[0], $res[1], $res[2]);
     }
 
     /**

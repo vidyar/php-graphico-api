@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of phpgraphico-api.
+ * This file is part of php-graphico-api.
  *
  * (c) Yuya Takeyama
  *
