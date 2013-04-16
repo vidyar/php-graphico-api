@@ -124,8 +124,53 @@ class Graphico_Tests_Api_ResponseTest extends PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @test
+     */
+    public function offsetExists_should_be_true_if_the_key_has_value()
+    {
+        $response = $this->createResponseWithBody('{"foo":"bar"}');
+
+        $this->assertTrue(isset($response['foo']));
+    }
+
+    /**
+     * @test
+     */
+    public function offsetExists_should_be_true_if_the_key_is_not_existent()
+    {
+        $response = $this->createResponseWithBody('{}');
+
+        $this->assertFalse(isset($response['foo']));
+    }
+
+    /**
+     * @test
+     */
+    public function offsetGet_should_be_the_value_in_json_response_body()
+    {
+        $response = $this->createResponseWithBody('{"foo":"bar"}');
+
+        $this->assertEquals('bar', $response['foo']);
+    }
+
+    /**
+     * @test
+     */
+    public function offsetGet_should_be_null_when_the_key_is_not_existent()
+    {
+        $response = $this->createResponseWithBody('{}');
+
+        $this->assertNull($response['foo']);
+    }
+
     private function createResponseWithStatus($status)
     {
         return new Graphico_Api_Response($status, array(), '');
+    }
+
+    private function createResponseWithBody($body)
+    {
+        return new Graphico_Api_Response(200, array(), $body);
     }
 }

@@ -26,9 +26,14 @@ class Graphico_Api_Response implements Graphico_Api_ResponseInterface
     private $header;
 
     /**
-     * @string
+     * @var string
      */
     private $body;
+
+    /**
+     * @var array
+     */
+    private $data;
 
     /**
      * Constructor.
@@ -71,17 +76,32 @@ class Graphico_Api_Response implements Graphico_Api_ResponseInterface
 
     public function offsetExists($key)
     {
+        $this->parseBodyAsJson();
+
+        return isset($this->data[$key]);
     }
 
     public function offsetGet($key)
     {
+        $this->parseBodyAsJson();
+
+        return isset($this->data[$key]) ? $this->data[$key] : null;
     }
 
     public function offsetSet($key, $value)
     {
+        throw new BadMethodCallException('Response is immutable');
     }
 
     public function offsetUnset($key)
     {
+        throw new BadMethodCallException('Response is immutable');
+    }
+
+    private function parseBodyAsJson()
+    {
+        if (is_null($this->data)) {
+            $this->data = json_decode($this->body, true);
+        }
     }
 }
