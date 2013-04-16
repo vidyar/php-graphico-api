@@ -28,7 +28,9 @@ class Graphico_Tests_Api_ClientTest extends PHPUnit_Framework_TestCase
 
         $client = new Graphico_Api_Client($httpClient, 'http://graphico.example.com/api/v0');
 
-        $client->call('GET', '/foo', array('bar' => 'baz'));
+        $res = $client->call('GET', '/foo', array('bar' => 'baz'));
+
+        return new Graphico_Api_Response($res[0], $res[1], $res[2]);
     }
 
     /**

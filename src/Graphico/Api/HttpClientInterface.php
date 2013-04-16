@@ -19,7 +19,7 @@ interface Graphico_Api_HttpClientInterface
      * @param  string $method Request method.
      * @param  string $uri    Request URI.
      * @param  array  $params Request parameters.
-     * @return Graphico_Api_ResponseInterface
+     * @return array
      */
     public function request($method, $uri, $params = array());
 }
