@@ -52,7 +52,9 @@ class Graphico_Api_Client
             throw new InvalidArgumentException(sprintf('Invalid request method "%s" is specified', $method));
         }
 
-        return $this->httpClient->request($method, $this->baseUrl . $uri, $params);
+        list($status, $header, $body) = $this->httpClient->request($method, $this->baseUrl . $uri, $params);
+
+        return new Graphico_Api_Response($status, $header, $body);
     }
 
     public function get($uri, $params = array())
