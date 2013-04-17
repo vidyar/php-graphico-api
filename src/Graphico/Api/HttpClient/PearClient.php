@@ -67,10 +67,6 @@ class Graphico_Api_HttpClient_PearClient implements Graphico_Api_HttpClientInter
             throw new RuntimeException(sprintf('Exception is occured when requesting to %s', $url));
         }
 
-        return new Graphico_Api_Response(
-            $req->getResponseCode(),
-            $req->getResponseHeader(),
-            $req->getResponseBody()
-        );
+        return array($req->getResponseCode(), $req->getResponseHeader(), $req->getResponseBody());
     }
 }
