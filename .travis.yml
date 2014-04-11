@@ -6,6 +6,6 @@ php:
 
 script: 
      - phpunit --coverage-text
-     - phpunit -- coverage-xml shippable/codecoverage tests
+     - phpunit --coverage-xml shippable/codecoverage tests
 notifications:
    email: false
