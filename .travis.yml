@@ -6,4 +6,4 @@ php:
   - 5.5
 script: 
  - phpunit --coverage-text
- - phpunit -v  
+ - php -v  
