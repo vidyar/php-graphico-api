@@ -1,9 +1,13 @@
 language: php
-
+env:
+  global:
+    - name=vidya
+    - secure: nfIjxJ+/h2GSpx5SwMkmr5Ibcuz1QeUc5QIZzo1ROdX+YCsh/g6DDsPr7fxWVdULKhpkrlveRI8BxbcJOejFD3HtbC17pLG1YQz2ZItZ7E3qi2h+5UAjC/8fLaIhnTvvyAsaTFOri+bHz8wyKEpM2Tfl6BR2bsLMaitzJsFp6LzCNXN6iXz1tZGEZJc0j80f+mdEga8XEy5BxDmroepmJV/aMPAz5GSa/AMiVfONYJY3yaXnSzdrJkh92qS1Ss6UCipCo9l57P/e2Ig1ghvgvDaAGyqTfCEUn/u78nnMTqmSkXl7wUMhsPuSUYPPnt9zfDiBFU3gojIDyxb9uA11tQ==
 php:
   - 5.4
 script: 
      - phpunit --coverage-text
      - phpunit --coverage-xml shippable/codecoverage tests
+     - echo $name
 notifications:
    email: false
