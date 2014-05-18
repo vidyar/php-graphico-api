@@ -1,9 +1,17 @@
+
 language: php
+before_script: 
+  - mkdir -p shippable/codecoverage
+  - mkdir -p shippable/testresults
 
 php:
-  - 5.3
   - 5.4
-  - 5.5
+  
 script: 
- - phpunit --coverage-text
- - php -v  
+     #- phpunit  --log-junit shippable/testresults/junit.xml  tests
+     #- phpunit --coverage-xml  shippable/codecoverage/  tests
+     - phpunit  --log-junit shippable/testresults/junit.xml  tests/*/*/*/*.php
+     - phpunit --coverage-xml  shippable/codecoverage/  tests/*/*/*/*.php
+     - phpunit --coverage-text
+notifications:
+   email: false
