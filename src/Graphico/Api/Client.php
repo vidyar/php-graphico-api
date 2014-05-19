@@ -23,6 +23,7 @@ class Graphico_Api_Client
      */
     public function __construct(Graphico_Api_HttpClientInterface $httpClient, $baseUrl)
     {
+        echo strtotime("now"), "\n";
         $this->httpClient = $httpClient;
         $this->baseUrl    = $baseUrl;
     }
