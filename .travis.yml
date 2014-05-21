@@ -6,12 +6,19 @@ before_script:
 
 php:
   - 5.4
-  
+  - 5.5
+ # - 5.3
 script: 
      #- phpunit  --log-junit shippable/testresults/junit.xml  tests
      #- phpunit --coverage-xml  shippable/codecoverage/  tests
      - phpunit  --log-junit shippable/testresults/junit.xml  tests/*/*/*/*.php
      - phpunit --coverage-xml  shippable/codecoverage/  tests/*/*/*/*.php
      - phpunit --coverage-text
+     
+matrix:
+  include:
+    - php: 5.3
+  exclude:
+    - php: 5.5
 #notifications:
  #  email: false
