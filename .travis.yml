@@ -9,10 +9,10 @@ php:
   - 5.6
   
 script:
-     #- phpunit  --log-junit shippable/testresults/junit.xml  tests
-     #- phpunit --coverage-xml  shippable/codecoverage/  tests
-     - phpunit  --log-junit shippable/testresults/junit.xml  tests/*/*/*/*.php
-     - phpunit --coverage-xml  shippable/codecoverage/  tests/*/*/*/*.php
+     - phpunit  --log-junit shippable/testresults/junit.xml  tests
+     - phpunit --coverage-xml  shippable/codecoverage/  tests
+    # - phpunit  --log-junit shippable/testresults/junit.xml  tests/*/*/*/*.php
+     #- phpunit --coverage-xml  shippable/codecoverage/  tests/*/*/*/*.php
      - phpunit --coverage-text
 
      
