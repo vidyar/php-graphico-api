@@ -18,7 +18,7 @@ script:
      
 matrix:
   include:
-   - php: 5.5
+   - php: "hhvm"
   exclude:
    - php: 5.4
 notifications:
