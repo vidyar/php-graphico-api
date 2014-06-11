@@ -17,11 +17,8 @@ script:
      - php -v
      - hhvm --version
 
+
      
-matrix:
-  include:
-   - php: "hhvm"
-  exclude:
-   - php: 5.4
+
 notifications:
   email: false
